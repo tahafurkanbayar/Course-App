@@ -2,6 +2,34 @@
     require "libs/variables.php";
     require "libs/functions.php";
 
+    session_start();
+
+
+    if(isset($_SESSION["message"])){
+        echo "<div class='alert alert-danger mb-0 text-center'>".$_SESSION['message']."</div>";
+        unset($_SESSION["message"]);
+    }
+
+
+
+
+?>
+
+    
+
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST["title"];
+    $subtitle = $_POST["subtitle"];
+    $image = $_POST["image"];
+    $dateAdded = $_POST["dateAdded"];
+
+    kursEkle($kurslar, $title, $subtitle, $image, $dateAdded);
+
+}
+
 ?>
     <?php include "partials/header.php"; ?>
     <?php include "partials/navbar.php"; ?>
